@@ -2,11 +2,10 @@
 
 这里选择mybatis和mysql驱动包：
 
-![image-20220225111333870](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220225111333870.png)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/e8c139d213854b3892834d6c30737cee.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA57yW56CB6Lev5LiK55qE5p-Q5YmR,size_20,color_FFFFFF,t_70,g_se,x_16)
 
 这时项目的pom会出现：
-
-![image-20220225111504780](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220225111504780.png)
+![image-20220225111504780](https://user-images.githubusercontent.com/85269099/155650320-887a2bdd-eb4f-4745-826b-07347a740b5b.png)
 
 ## springboot配置整合mybatis
 
@@ -157,5 +156,5 @@ public class MybatisApplication {
 
 最终测试成功：
 
-![image-20220225114445898](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220225114445898.png)
+![image-20220225114445898](https://user-images.githubusercontent.com/85269099/155650385-c598a956-0073-485f-a156-9eb7cd3878d6.png)
 

@@ -1,0 +1,18 @@
+#����Դ����
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/mybatis?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+    username: root
+    password: 12345678
+    driver-class-name: com.mysql.jdbc.Driver
+
+#����mybatisӳ�������ļ������������ļ���λ���Լ������շ�����
+mybatis:
+  mapper-locations: classpath:com/zj/mybatis/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+#  config-location: classpath:mybatis-config.xml
+
+#tomcat�˿ں�
+server:
+  port: 8080

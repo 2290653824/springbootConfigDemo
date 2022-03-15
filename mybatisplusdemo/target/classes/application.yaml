@@ -1,0 +1,18 @@
+
+#数据源配置
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/mybatis-plus?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+    username: root
+    password: 12345678
+    driver-class-name: com.mysql.jdbc.Driver
+
+#日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #设置全局的主键生成策略,当然我们也可以使用tableID进行设置。可以通过IdType查看源码中有哪些主键生成策略
+  global-config:
+    db-config:
+      id-type: assign_id
+

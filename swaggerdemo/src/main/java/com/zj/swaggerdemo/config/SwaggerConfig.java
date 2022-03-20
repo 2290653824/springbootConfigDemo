@@ -44,4 +44,28 @@ import java.util.ArrayList;
 
         );
     }
+        
+        
+    //以下是做项目时遇到的另一种写法
+        
+//     @Bean
+//     public Docket webApiConfig() {
+//         return new Docket(DocumentationType.SWAGGER_2)
+//                 // 分组名
+//                 .groupName("WebApi")
+//                 .apiInfo(apiInfo())
+//                 .select()
+//                 .paths(Predicates.not(PathSelectors.regex("/admin/.*")))
+//                 .paths(Predicates.not(PathSelectors.regex("/error.*")))
+//                 .build();
+//     }
+
+//     private ApiInfo apiInfo() {
+//         return new ApiInfoBuilder()
+//                 .title("Java攀登网API文档")
+//                 .description("描述服务端的 api 接口定义")
+//                 .version("1.0")
+//                 .contact(new Contact("javaclimb", "http://www.javaclimb.com", "xxxx.@xxx.com"))
+//                 .build();
+//     }
 }

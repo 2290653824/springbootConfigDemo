@@ -1,0 +1,30 @@
+
+#方式一
+#springboot的默认日志级别是：INFO。在这里我们可以进行设置
+#注意通过这种方式可能在高版本的springboot中出现错误
+#日志记录器（Logger）的行为是分等级的。如下表所示：
+#
+#分为：OFF、FATAL、ERROR、WARN、INFO、DEBUG、ALL
+#
+#默认情况下，spring boot从控制台打印出来的日志级别只有INFO及以上级别，可以配置日志级别
+#这种方式只能将日志打印在控制台上。
+
+
+#logging:
+#  level:
+#    root: INFO
+server:
+  port: 8082
+
+#方式二
+#注意要配置好生产环境，不然一个日志都不会打印出来
+spring:
+  profiles:
+    active: dev
+#logback-spring.xml
+
+
+#方式二扩展
+#我们在编程中使用@Slf4j中的log.info()来打印和保存日志，但是有一个缺点就是不能打印和保存堆栈信息
+#我们可以引入一个类EXceptionUtils类来打印堆栈信息，这个类是直接就写好了的
+#当我们要抛出异常并打印时，比如在spring中自定义异常并打印信息：log.error(ExceptionUtil.getMessage(e));

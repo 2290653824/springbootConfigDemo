@@ -1,6 +1,6 @@
 > 关于如何注册阿里云的oss这里不再进行介绍，本文章主要针对对oss有一定的了解的朋友
 
-
+# 如何在后端搭建oss服务
 
 有两种方案：
 
@@ -204,7 +204,7 @@ public interface FileService {
 
 
 
-```JAVA
+```java
 package com.zj.aliyunossdemo.service.impl;
 
 import com.aliyun.oss.OSS;
@@ -308,20 +308,23 @@ public class FileController {
 
 
 接下来我们先进行swagger测试：
+![在这里插入图片描述](https://img-blog.csdnimg.cn/50e63c9d20354d40af2563c150bf773f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA57yW56CB6Lev5LiK55qE5p-Q5YmR,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-![image-20220324215215624](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220324215215624.png)
+
 
 可以看到我们文件上传和模块名字都是正确的，但是返回的结果却是500，我们看看服务端哪儿出错了：
 
 
+![在这里插入图片描述](https://img-blog.csdnimg.cn/3f16e63378464ddd826db3d181fea717.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA57yW56CB6Lev5LiK55qE5p-Q5YmR,size_20,color_FFFFFF,t_70,g_se,x_16)
 
-![image-20220324215609173](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220324215609173.png)
+
 
 定位错误：
 
 ```java
 org.springframework.web.multipart.MultipartException: Current request is not a multipart request
 ```
+# bug解决方案
 
 我在网上查询了问题的方案：
 
@@ -329,16 +332,21 @@ org.springframework.web.multipart.MultipartException: Current request is not a m
 
 我们对应是要上传文件，所以前端发起的请求因该是一个上传文件的请求，即content-type的类型应该为multipart/form-data，我们看看swagger发出的请求类型是什么：
 
-![image-20220324220244460](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220324220244460.png)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/a14fe56ccc324120b151f7591161a5ad.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA57yW56CB6Lev5LiK55qE5p-Q5YmR,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 
 从这里可以看出swagger发出的请求contentType是application/json的形式。
 
 我们目前并不知道在前端的情况下如何设置这个contenttype，但是我在网上看到了关于用postman调用成功的方法：
 
-![image-20220324220827174](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220324220827174.png)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/4c8cd52ca7fc413fbe6631aedff0cc4b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA57yW56CB6Lev5LiK55qE5p-Q5YmR,size_20,color_FFFFFF,t_70,g_se,x_16)
+
 
 我们在postman中直接设置file和module，不用设置contentTYpe，这样postman会自动帮助我们进行设置。我们进行运行：
-![image-20220324221502689](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220324221502689.png)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/92b0c4a66c4648e58e7814de3b40fbbe.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA57yW56CB6Lev5LiK55qE5p-Q5YmR,size_20,color_FFFFFF,t_70,g_se,x_16)
+
+
 
 运行成功并成功返回了地址。
 
@@ -348,7 +356,9 @@ org.springframework.web.multipart.MultipartException: Current request is not a m
 
 view=>show postman console
 
-![image-20220324221649468](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20220324221649468.png)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/8b5327ab1c9143008c3620adb0966dd6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA57yW56CB6Lev5LiK55qE5p-Q5YmR,size_20,color_FFFFFF,t_70,g_se,x_16)
+
+
 
 这里可以看出，就是因为请求头中contentType是multipart/form-data而不是application/json，所以我们上传文件成功了。但是我并不知道swagger和postman为什么会有这样的区别。
 
@@ -357,4 +367,5 @@ view=>show postman console
 以上就是oss以及spring文件上传组件的介绍
 
 参考文章：
-![]https://stackoverflow.com/questions/42013087/multipartexception-current-request-is-not-a-multipart-request
+
+[org.springframework.web.multipart.MultipartException: Current request is not a multipart request](https://stackoverflow.com/questions/42013087/multipartexception-current-request-is-not-a-multipart-request)

@@ -1,0 +1,20 @@
+
+#第三步配置yaml
+server:
+  port: 9000 # 服务端口
+
+spring:
+  profiles:
+    active: dev
+  application:
+# 服务名
+    name: service_oss
+
+#在utils上已经配置了ConfigurationProperties
+aliyun:
+  oss:
+    endpoint: https://oss-cn-beijing.aliyuncs.com
+    keyId: LTAI5tPcM6iZu2C2F7xnq2Ao
+    keySecret: AIjy0FJWIaloprQoOn67gp7jrll7Fw
+    bucketName: health2001
+

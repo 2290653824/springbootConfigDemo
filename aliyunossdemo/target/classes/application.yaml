@@ -1,0 +1,18 @@
+
+server:
+  port: 9000 # ����˿�
+
+spring:
+  profiles:
+    active: dev
+  application:
+# ������
+    name: service_oss
+
+aliyun:
+  oss:
+    endpoint: https://oss-cn-beijing.aliyuncs.com
+    keyId: LTAI5tPcM6iZu2C2F7xnq2Ao
+    keySecret: AIjy0FJWIaloprQoOn67gp7jrll7Fw
+    bucketName: health2001
+

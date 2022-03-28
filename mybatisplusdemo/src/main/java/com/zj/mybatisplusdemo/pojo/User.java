@@ -1,8 +1,9 @@
 package com.zj.mybatisplusdemo.pojo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
+
+import java.util.Date;
 
 @Data
 public class User {
@@ -12,4 +13,15 @@ public class User {
     private String name;
     private Integer age;
     private String email;
+
+    //字段自动填充策略
+    @TableField(fill = FieldFill.INSERT)
+    private Date insertTime;
+
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Date updateTime;
+
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    @Version
+    private Integer version;
 }
